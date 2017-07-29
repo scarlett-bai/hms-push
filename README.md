@@ -1,9 +1,10 @@
 # hms-push
-华为推送服务 HMS 版
-A simple, fast HMS Huawei PUSH in Golang (http://developer.huawei.com/consumer/cn/wiki/index.php?title=HMS%E6%9C%8D%E5%8A%A1%E4%BB%8B%E7%BB%8D-PUSH%E6%9C%8D%E5%8A%A1)
+华为推送服务HMS版  
+A simple, fast [HMS Huawei PUSH](http://developer.huawei.com/consumer/cn/wiki/index.php?title=HMS%E6%9C%8D%E5%8A%A1%E4%BB%8B%E7%BB%8D-PUSH%E6%9C%8D%E5%8A%A1) in Golang  
 
-This is an update version of yilee's code (https://github.com/yilee/huawei-push), specific to the new Huawei PUSH (HMS)
-HMS promises us a higher delivery rate, a smaller client-SDK, less battery-consumption, and a BULLSHIT documentation.
+This is an updated version of yilee's code (https://github.com/yilee/huawei-push), but specific to the new Huawei PUSH (HMS). 
+
+HMS promises us a higher delivery rate, a smaller client-SDK, less battery-consumption, and a BULLSHIT documentation. ￣へ￣  
 
 ## APIs Supported:
 RequestAccessToken  
@@ -33,7 +34,9 @@ if err != nil {
 fmt.Println("Push success, Result:", result)
 ```
 
-More examples can be got from 'client_test.go'
+More examples can be got from [client_test.go](https://github.com/terry-xiaoyu/hms-push/blob/master/client_test.go)
 
 ## TO DO
-TOML based config file, Metrics, Logs will come soon.
+
+A production ready HMS provider will come soon.  
+It will uses a simple Redis LIST as its input queue, TOML based config file, Metrics and Logs.
