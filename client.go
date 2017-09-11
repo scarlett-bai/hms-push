@@ -45,6 +45,19 @@ func (c *HuaweiPushClient) defaultParams(params url.Values) (url.Values, error) 
 //  3. PsSingleNotification
 //  4. PsBatchNotification
 func (c *HuaweiPushClient) SendPush(ctx context.Context, notification interface{}) (*PushResult, error) {
+	result, err := c.sendPush(ctx, notification)
+	if err == nil {
+		if result.ResultCode == NoPermission || result.Error == SessionTimeoutError || result.Error == SessionInvalidError {
+			tokenInstance.AccessToken = ""
+			return c.sendPush(ctx, notification)
+		}
+	}
+
+	return result, err
+}
+
+// helper func to send the msg
+func (c *HuaweiPushClient) sendPush(ctx context.Context, notification interface{}) (*PushResult, error) {
 	params, err := c.defaultParams(url.Values{})
 	if err != nil {
 		return nil, err
@@ -72,10 +85,7 @@ func (c *HuaweiPushClient) SendPush(ctx context.Context, notification interface{
 	if err != nil {
 		return nil, err
 	}
-	if result.Error == SessionTimeoutError || result.Error == SessionInvalidError {
-		tokenInstance.AccessToken = ""
-		return c.SendPush(ctx, notification)
-	}
+
 	return &result, nil
 }
 

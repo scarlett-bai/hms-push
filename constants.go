@@ -13,6 +13,9 @@ const (
 )
 
 const (
+	// NoPermission to send message to these tmIDs, may need to resend using
+	// an updated accessToken
+	NoPermission        = 20203
 	SessionTimeoutError = "session timeout"
 	SessionInvalidError = "invalid session"
 )
